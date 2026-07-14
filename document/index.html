@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job-Vista - Documentation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true, theme: 'base', themeVariables: { primaryColor: '#f1f5f9', primaryBorderColor: '#2563EB', primaryTextColor: '#1E293B' }});
+    </script>
+    <style>
+        :root {
+            --primary: #2563EB;
+            --primary-dark: #1D4ED8;
+            --sidebar-bg: #F8FAFC;
+            --text-dark: #1E293B;
+            --text-light: #64748B;
+            --border: #E2E8F0;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            background-color: #ffffff;
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 280px;
+            background-color: var(--sidebar-bg);
+            border-right: 1px solid var(--border);
+            height: 100%;
+            overflow-y: auto;
+            padding: 2rem 0;
+            flex-shrink: 0;
+        }
+
+        .sidebar-header {
+            padding: 0 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .sidebar-header h1 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin: 0;
+        }
+
+        .sidebar-nav {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar-nav li {
+            margin-bottom: 0.5rem;
+        }
+
+        .sidebar-nav a {
+            display: block;
+            padding: 0.75rem 2rem;
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .sidebar-nav a:hover {
+            background-color: #EFF6FF;
+            color: var(--primary);
+        }
+
+        /* Main Content */
+        .content {
+            flex-grow: 1;
+            padding: 3rem 4rem;
+            overflow-y: auto;
+            scroll-behavior: smooth;
+        }
+
+        .content-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        h1, h2, h3, h4 {
+            color: var(--text-dark);
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            color: var(--primary);
+        }
+
+        p, li {
+            line-height: 1.7;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        code {
+            background-color: #F1F5F9;
+            color: #EF4444;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.9em;
+            font-family: monospace;
+        }
+
+        pre {
+            background-color: #1E293B;
+            color: #F8FAFC;
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            line-height: 1.5;
+            font-family: monospace;
+            font-size: 0.9rem;
+        }
+
+        pre code {
+            background-color: transparent;
+            color: inherit;
+            padding: 0;
+        }
+
+        .alert {
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            background-color: #EFF6FF;
+            border-left: 4px solid var(--primary);
+        }
+
+        .alert-warning {
+            background-color: #FFFBEB;
+            border-color: #F59E0B;
+            color: #92400E;
+        }
+
+        .mermaid-container {
+            background-color: #F8FAFC;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            display: flex;
+            justify-content: center;
+        }
+
+    </style>
+</head>
+<body>
+
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h1>Job-Vista</h1>
+            <p style="margin:0; font-size: 0.8rem; color: var(--text-light);">v1.0.0 Documentation</p>
+        </div>
+        <ul class="sidebar-nav">
+            <li><a href="#introduction">Introduction</a></li>
+            <li><a href="#architecture">Architecture & Flow</a></li>
+            <li><a href="#requirements">Requirements</a></li>
+            <li><a href="#backend">1. Backend Setup (Laravel)</a></li>
+            <li><a href="#frontend">2. Admin Panel (React)</a></li>
+            <li><a href="#mobile">3. Mobile App (Flutter)</a></li>
+            <li><a href="#customization">4. Customization Guide</a></li>
+            <li><a href="#features">Key Features</a></li>
+        </ul>
+    </aside>
+
+    <main class="content">
+        <div class="content-container">
+            <section id="introduction">
+                <h2>Introduction</h2>
+                <p>Welcome to <strong>Job-Vista</strong>, a comprehensive Job Portal platform. Job-Vista provides a robust ecosystem for managing and browsing Government Jobs, Private Jobs, Admit Cards, Results, and Interactive Quizzes.</p>
+                <p>This documentation will guide you through installing and configuring the three main components of the platform:</p>
+                <ul>
+                    <li><strong>Backend API:</strong> Built with Laravel 13.8 (PHP 8.3).</li>
+                    <li><strong>Frontend Admin Panel:</strong> Built with React 19.2 (Vite, Material-UI 9.2).</li>
+                    <li><strong>Mobile App:</strong> Built with Flutter 3.12 (Riverpod, Dio).</li>
+                </ul>
+            </section>
+
+            <section id="architecture">
+                <h2>Architecture & Flow</h2>
+                <p>Job-Vista operates with a central unified Laravel API servicing both the Web Admin Panel and the Mobile App. The mobile app specifically utilizes a "Dual-OTP" smart-fallback authentication flow, allowing users to verify via WhatsApp or Email seamlessly.</p>
+                
+                <div class="mermaid-container">
+                    <pre class="mermaid">
+                    graph TD
+                        A[Mobile App - Flutter] -->|API Requests| B(Backend API - Laravel)
+                        C[Admin Panel - React] -->|API Requests| B
+                        
+                        B -->|Reads/Writes| D[(MySQL Database)]
+                        
+                        subgraph Auth Flow
+                            A -->|Send OTP| E{WhatsApp API}
+                            A -.->|Fallback OTP| F{Email SMTP}
+                        end
+                    </pre>
+                </div>
+            </section>
+
+            <section id="requirements">
+                <h2>Server Requirements</h2>
+                <p>Ensure your server meets the following requirements before installation:</p>
+                <ul>
+                    <li>PHP >= 8.3</li>
+                    <li>MySQL >= 8.0 or MariaDB >= 10.3</li>
+                    <li>Composer v2.x</li>
+                    <li>Node.js >= 18.x and NPM >= 9.x</li>
+                    <li>Flutter SDK >= 3.12.0 (For Mobile App Compilation)</li>
+                    <li>Cpanel / VPS / Dedicated Server for hosting</li>
+                </ul>
+            </section>
+
+            <section id="backend">
+                <h2>1. Backend Setup & Deployment (Laravel API)</h2>
+                <p>The backend serves as the core database manager and API provider for both the React Admin Panel and the Flutter Mobile App.</p>
+                
+                <h3>Step 1: Installation</h3>
+                <p>Extract the downloaded package and navigate to the <code>backend</code> directory in your terminal.</p>
+                <pre><code>cd backend
+composer install</code></pre>
+                
+                <h3>Step 2: Environment Configuration</h3>
+                <p>Copy the `.env.example` file and rename it to `.env`.</p>
+                <pre><code>cp .env.example .env</code></pre>
+                <p>Open the `.env` file and configure your database settings:</p>
+                <pre><code>DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=your_database_name
+DB_USERNAME=your_database_user
+DB_PASSWORD=your_database_password</code></pre>
+
+                <h3>Step 3: App Key & Database Migration</h3>
+                <p>Generate the application key and run the database migrations along with the seeders to insert default admin credentials.</p>
+                <pre><code>php artisan key:generate
+php artisan migrate --seed</code></pre>
+                
+                <h3>Step 4: Storage Link & Run</h3>
+                <p>Link the storage folder to make uploaded files (like profile pictures and PDFs) publicly accessible.</p>
+                <pre><code>php artisan storage:link</code></pre>
+
+                <h3>Production Deployment (cPanel / VPS)</h3>
+                <p><strong>Option 1: Recommended (More Secure)</strong></p>
+                <p>1. Upload the entire <code>backend</code> folder to your server in a directory outside <code>public_html</code> (e.g., <code>/home/user/job-vista-api</code>).</p>
+                <p>2. Point your subdomain or domain's Document Root directly to the <code>public</code> folder (e.g., <code>/home/user/job-vista-api/public</code>).</p>
+                
+                <p><strong>Option 2: Shared Hosting (Inside public_html)</strong></p>
+                <p>If your host requires files inside <code>public_html</code>, upload the <code>backend</code> contents to a folder like <code>public_html/api</code>.</p>
+                <p>Create a file named <code>.htaccess</code> in that folder (e.g., inside <code>public_html/api</code>) and add this code to route all requests to Laravel's <code>public</code> directory without showing "public" in the URL:</p>
+                <pre><code>&lt;IfModule mod_rewrite.c&gt;
+    RewriteEngine On
+    RewriteRule ^(.*)$ public/$1 [L]
+&lt;/IfModule&gt;</code></pre>
+                
+                <p><strong>Final Checks:</strong> Ensure proper file permissions (755 for directories, 644 for files) and run <code>php artisan storage:link</code>.</p>
+                
+                <div class="alert alert-warning">
+                    <strong>Default Admin Login:</strong><br>
+                    Email: <code>admin@jobvista.com</code><br>
+                    Password: <code>password</code>
+                </div>
+            </section>
+
+            <section id="frontend">
+                <h2>2. Admin Panel Setup & Deployment (React)</h2>
+                <p>The frontend provides a sleek Material-UI dashboard to manage Jobs, Quizzes, Categories, and App users.</p>
+
+                <h3>Step 1: Installation</h3>
+                <p>Navigate to the <code>frontend</code> directory.</p>
+                <pre><code>cd frontend
+npm install</code></pre>
+
+                <h3>Step 2: Configuration</h3>
+                <p>Open the <code>.env</code> file (or create one) in the <code>frontend</code> directory and point the API URL to your live backend domain.</p>
+                <pre><code>VITE_API_URL=https://api.your-domain.com/api</code></pre>
+
+                <h3>Step 3: Build & Deploy to Production</h3>
+                <p>To compile the optimized production code, run:</p>
+                <pre><code>npm run build</code></pre>
+                <p>This will generate a <code>dist</code> folder containing the static HTML/JS/CSS assets.</p>
+                <p>Upload the contents of the <code>dist</code> folder to your web server (e.g., inside <code>public_html/admin</code> for cPanel). Ensure you configure Apache/Nginx to handle React routing (e.g., rewriting all requests to <code>index.html</code>).</p>
+            </section>
+
+            <section id="mobile">
+                <h2>3. Mobile App Setup (Flutter)</h2>
+                <p>The Flutter app provides a premium UI/UX for end-users to browse jobs, apply, and take quizzes.</p>
+
+                <h3>Step 1: Install Dependencies</h3>
+                <p>Ensure you have Flutter installed. Navigate to the <code>mobile</code> directory.</p>
+                <pre><code>cd mobile
+flutter pub get</code></pre>
+
+                <h3>Step 2: API Configuration</h3>
+                <p>Open <code>lib/core/constants/api_endpoints.dart</code> (or your specific network configuration file) and update the base URL to point to your live Laravel API.</p>
+                <pre><code>class ApiEndpoints {
+  static const String baseUrl = 'https://api.your-domain.com/api';
+  // ...
+}</code></pre>
+
+                <h3>Step 3: Run / Build</h3>
+                <p>Run the app on an emulator or connected device:</p>
+                <pre><code>flutter run</code></pre>
+                <p>To build an APK for Android release:</p>
+                <pre><code>flutter build apk --release</code></pre>
+                <p>To build an AppBundle for Google Play Store:</p>
+                <pre><code>flutter build appbundle --release</code></pre>
+            </section>
+
+            <section id="customization">
+                <h2>4. Customization Guide</h2>
+                
+                <h3>Changing the App Icon & Splash Screen (Mobile)</h3>
+                <p>We use automated libraries (<code>flutter_launcher_icons</code> and <code>flutter_native_splash</code>) to effortlessly generate your icons across all platforms.</p>
+                <ol>
+                    <li>Replace the <code>brand_png.png</code> file inside <code>mobile/assets/brand/</code> with your square logo (1024x1024 recommended).</li>
+                    <li>Replace the <code>splash.png</code> file inside <code>mobile/assets/brand/</code> with your splash screen logo.</li>
+                    <li>Run the following commands to generate the assets:
+                        <pre><code>cd mobile
+dart run flutter_launcher_icons
+dart run flutter_native_splash:create</code></pre>
+                    </li>
+                </ol>
+
+                <h3>Changing the Package Name (Android)</h3>
+                <p>The easiest way to change the package name (e.g., <code>com.yourcompany.jobvista</code>) is to use the <code>rename</code> package.</p>
+                <ol>
+                    <li>Run the following command globally:
+                        <pre><code>flutter pub global activate rename</code></pre>
+                    </li>
+                    <li>Navigate to the mobile directory and apply your new bundle ID:
+                        <pre><code>cd mobile
+flutter pub global run rename setBundleId --value "com.yourcompany.appname"</code></pre>
+                    </li>
+                </ol>
+
+                <h3>Changing the App Name (Display Name)</h3>
+                <p>You can also use the rename package to change the display name of your app effortlessly:</p>
+                <pre><code>flutter pub global run rename setAppName --value "Your App Name"</code></pre>
+            </section>
+
+            <section id="features">
+                <h2>Key Features</h2>
+                <ul>
+                    <li><strong>Smart Dual-OTP Authentication:</strong> Users can verify themselves using either their WhatsApp OTP or Email OTP interchangeably during the login and registration flows.</li>
+                    <li><strong>Job Management:</strong> Easily categorize Govt and Private jobs with extensive details (Salary, Age Limit, Links, Documents).</li>
+                    <li><strong>Interactive Quizzes:</strong> Create dynamic multiple-choice quizzes from the admin panel that users can play natively in the app.</li>
+                    <li><strong>Premium UI:</strong> Built with cutting-edge Glassmorphism designs and fluid animations across Login, Registration, and internal dashboard pages.</li>
+                </ul>
+            </section>
+
+            <br><br><br>
+        </div>
+    </main>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
