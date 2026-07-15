@@ -3,12 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Job-Vista - Documentation</title>
+    <title>Job Vista - Documentation</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <script type="module">
-        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-        mermaid.initialize({ startOnLoad: true, theme: 'base', themeVariables: { primaryColor: '#f1f5f9', primaryBorderColor: '#2563EB', primaryTextColor: '#1E293B' }});
-    </script>
     <style>
         :root {
             --primary: #2563EB;
@@ -149,17 +145,40 @@
         .alert-warning {
             background-color: #FFFBEB;
             border-color: #F59E0B;
-            color: #92400E;
         }
 
-        .mermaid-container {
-            background-color: #F8FAFC;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 1.5rem;
+        table {
+            width: 100%;
+            border-collapse: collapse;
             margin: 2rem 0;
-            display: flex;
-            justify-content: center;
+        }
+
+        th, td {
+            border: 1px solid var(--border);
+            padding: 1rem;
+            text-align: left;
+        }
+
+        th {
+            background-color: var(--sidebar-bg);
+            font-weight: 600;
+        }
+        
+        .screenshot-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        .screenshot-grid img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
+        .admin-img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            margin-bottom: 1rem;
         }
 
     </style>
@@ -168,218 +187,226 @@
 
     <aside class="sidebar">
         <div class="sidebar-header">
-            <h1>Job-Vista</h1>
+            <h1>Job Vista</h1>
             <p style="margin:0; font-size: 0.8rem; color: var(--text-light);">v1.0.0 Documentation</p>
         </div>
         <ul class="sidebar-nav">
-            <li><a href="#introduction">Introduction</a></li>
-            <li><a href="#architecture">Architecture & Flow</a></li>
-            <li><a href="#requirements">Requirements</a></li>
-            <li><a href="#backend">1. Backend Setup (Laravel)</a></li>
-            <li><a href="#frontend">2. Admin Panel (React)</a></li>
-            <li><a href="#mobile">3. Mobile App (Flutter)</a></li>
-            <li><a href="#customization">4. Customization Guide</a></li>
-            <li><a href="#features">Key Features</a></li>
+            <li><a href="#introduction">A. Introduction</a></li>
+            <li><a href="#requirements">B. Technical Requirements</a></li>
+            <li><a href="#architecture">C. Architecture Overview</a></li>
+            <li><a href="#local">D. Local Installation</a></li>
+            <li><a href="#production">E. Production Deployment</a></li>
+            <li><a href="#branding">F. Branding Customization</a></li>
+            <li><a href="#screenshots">G. Screenshots</a></li>
+            <li><a href="#troubleshooting">H. Troubleshooting</a></li>
+            <li><a href="#third-party">I. Third-Party Services</a></li>
+            <li><a href="#support">J. Support Policy</a></li>
+            <li><a href="#changelog">K. Changelog & Credits</a></li>
         </ul>
     </aside>
 
     <main class="content">
         <div class="content-container">
+            
             <section id="introduction">
-                <h2>Introduction</h2>
-                <p>Welcome to <strong>Job-Vista</strong>, a comprehensive Job Portal platform. Job-Vista provides a robust ecosystem for managing and browsing Government Jobs, Private Jobs, Admit Cards, Results, and Interactive Quizzes.</p>
-                <p>This documentation will guide you through installing and configuring the three main components of the platform:</p>
+                <h2>A. Introduction</h2>
+                <p>Welcome to <strong>Job Vista</strong>. Job Vista is a comprehensive Job Portal platform designed for organizations, recruitment agencies, educational institutions, and job boards to manage and publish job opportunities, admit cards, and results.</p>
+                <p><strong>Who it is designed for:</strong> It is built for startup founders, government job portals, HR companies, and career platforms who need a complete ecosystem.</p>
                 <ul>
-                    <li><strong>Backend API:</strong> Built with Laravel 13.8 (PHP 8.3).</li>
-                    <li><strong>Frontend Admin Panel:</strong> Built with React 19.2 (Vite, Material-UI 9.2).</li>
-                    <li><strong>Mobile App:</strong> Built with Flutter 3.12 (Riverpod, Dio).</li>
+                    <li><strong>Flutter mobile application:</strong> A responsive, native-feeling app for end users to browse jobs, apply, and receive push notifications.</li>
+                    <li><strong>Laravel REST API:</strong> A secure backend that manages data, authentication, and external services.</li>
+                    <li><strong>React admin panel:</strong> A sleek dashboard for administrators to manage jobs, users, and app settings.</li>
+                    <li><strong>Main capabilities:</strong> Job management, OTP authentication, detailed job qualifications/salaries, push notifications, saved jobs, and a clean user experience.</li>
+                </ul>
+            </section>
+
+            <section id="requirements">
+                <h2>B. Technical Requirements</h2>
+                <p>Ensure your server and local environment meet the following tested versions:</p>
+                <ul>
+                    <li><strong>PHP:</strong> 8.3 or later</li>
+                    <li><strong>Laravel:</strong> 13.x</li>
+                    <li><strong>MySQL:</strong> 8.0 or later (compatible tested version)</li>
+                    <li><strong>Node.js:</strong> 22.x (tested version)</li>
+                    <li><strong>npm:</strong> 10.x (tested version)</li>
+                    <li><strong>Flutter SDK:</strong> 3.24.x (tested version)</li>
+                    <li><strong>Dart SDK:</strong> 3.5.x (tested version)</li>
+                    <li><strong>Composer:</strong> 2.x</li>
+                    <li><strong>Required PHP extensions:</strong> OpenSSL, PDO, Mbstring, Tokenizer, XML, Ctype, JSON, BCMath, Fileinfo, and cURL</li>
+                    <li><strong>Server:</strong> Apache and Nginx have both been tested on shared hosting and VPS environments.</li>
                 </ul>
             </section>
 
             <section id="architecture">
-                <h2>Architecture & Flow</h2>
-                <p>Job-Vista operates with a central unified Laravel API servicing both the Web Admin Panel and the Mobile App. The mobile app specifically utilizes a "Dual-OTP" smart-fallback authentication flow, allowing users to verify via WhatsApp or Email seamlessly.</p>
-                
-                <div class="mermaid-container">
-                    <pre class="mermaid">
-                    graph TD
-                        A[Mobile App - Flutter] -->|API Requests| B(Backend API - Laravel)
-                        C[Admin Panel - React] -->|API Requests| B
-                        
-                        B -->|Reads/Writes| D[(MySQL Database)]
-                        
-                        subgraph Auth Flow
-                            A -->|Send OTP| E{WhatsApp API}
-                            A -.->|Fallback OTP| F{Email SMTP}
-                        end
-                    </pre>
-                </div>
-            </section>
-
-            <section id="requirements">
-                <h2>Server Requirements</h2>
-                <p>Ensure your server meets the following requirements before installation:</p>
+                <h2>C. Architecture Overview</h2>
+                <p>Job Vista follows a decoupled client-server architecture.</p>
                 <ul>
-                    <li>PHP >= 8.3</li>
-                    <li>MySQL >= 8.0 or MariaDB >= 10.3</li>
-                    <li>Composer v2.x</li>
-                    <li>Node.js >= 18.x and NPM >= 9.x</li>
-                    <li>Flutter SDK >= 3.12.0 (For Mobile App Compilation)</li>
-                    <li>Cpanel / VPS / Dedicated Server for hosting</li>
+                    <li><strong>Laravel (Backend):</strong> Contains <code>routes/api.php</code> for REST API endpoints. The <code>app/Http/Controllers</code> folder handles business logic. The <code>app/Services</code> folder manages Auth and OTP logic. The <code>app/Models</code> map to the database schema.</li>
+                    <li><strong>React (Frontend Admin):</strong> A Single Page Application (SPA) built with Vite. The <code>src/pages</code> folder contains route views, <code>src/components</code> holds reusable UI, and <code>src/services/api.js</code> manages Axios requests. Authentication uses token-based login.</li>
+                    <li><strong>Flutter (Mobile App):</strong> Uses Riverpod for state management. Features are organized inside <code>lib/features/</code> (e.g., auth, jobs, quizzes). Each feature has <code>presentation</code>, <code>domain</code>, and <code>data</code> layers (Clean Architecture).</li>
+                    <li><strong>Data Flow:</strong> Both Flutter and React communicate with Laravel via secure REST endpoints using Sanctum bearer tokens.</li>
+                    <li><strong>File Uploads:</strong> Processed by Laravel controllers and stored in the local <code>storage/app/public</code> disk, accessible via symbolic links.</li>
+                    <li><strong>Notifications:</strong> Triggered via Laravel events/listeners and sent through external providers like Firebase.</li>
                 </ul>
             </section>
 
-            <section id="backend">
-                <h2>1. Backend Setup & Deployment (Laravel API)</h2>
-                <p>The backend serves as the core database manager and API provider for both the React Admin Panel and the Flutter Mobile App.</p>
+            <section id="local">
+                <h2>D. Local Installation</h2>
                 
-                <h3>Step 1: Installation</h3>
-                <p>Extract the downloaded package and navigate to the <code>backend</code> directory in your terminal.</p>
+                <h3>1. Laravel API</h3>
                 <pre><code>cd backend
-composer install</code></pre>
-                
-                <h3>Step 2: Environment Configuration</h3>
-                <p>Copy the `.env.example` file and rename it to `.env`.</p>
-                <pre><code>cp .env.example .env</code></pre>
-                <p>Open the `.env` file and configure your database settings:</p>
-                <pre><code>DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=your_database_name
-DB_USERNAME=your_database_user
-DB_PASSWORD=your_database_password</code></pre>
+composer install
+cp .env.example .env
+php artisan key:generate</code></pre>
+                <p>Configure `.env` with your local database credentials, then run:</p>
+                <pre><code>php artisan migrate --seed
+php artisan storage:link
+php artisan serve</code></pre>
 
-                <h3>Step 3: App Key & Database Migration</h3>
-                <p>Generate the application key and run the database migrations along with the seeders to insert default admin credentials.</p>
-                <pre><code>php artisan key:generate
-php artisan migrate --seed</code></pre>
-                
-                <h3>Step 4: Storage Link & Run</h3>
-                <p>Link the storage folder to make uploaded files (like profile pictures and PDFs) publicly accessible.</p>
-                <pre><code>php artisan storage:link</code></pre>
-
-                <h3>Production Deployment (cPanel / VPS)</h3>
-                <p><strong>Option 1: Recommended (More Secure)</strong></p>
-                <p>1. Upload the entire <code>backend</code> folder to your server in a directory outside <code>public_html</code> (e.g., <code>/home/user/job-vista-api</code>).</p>
-                <p>2. Point your subdomain or domain's Document Root directly to the <code>public</code> folder (e.g., <code>/home/user/job-vista-api/public</code>).</p>
-                
-                <p><strong>Option 2: Shared Hosting (Inside public_html)</strong></p>
-                <p>If your host requires files inside <code>public_html</code>, upload the <code>backend</code> contents to a folder like <code>public_html/api</code>.</p>
-                <p>Create a file named <code>.htaccess</code> in that folder (e.g., inside <code>public_html/api</code>) and add this code to route all requests to Laravel's <code>public</code> directory without showing "public" in the URL:</p>
-                <pre><code>&lt;IfModule mod_rewrite.c&gt;
-    RewriteEngine On
-    RewriteRule ^(.*)$ public/$1 [L]
-&lt;/IfModule&gt;</code></pre>
-                
-                <p><strong>Final Checks:</strong> Ensure proper file permissions (755 for directories, 644 for files) and run <code>php artisan storage:link</code>.</p>
-                
-                <div class="alert alert-warning">
-                    <strong>Default Admin Login:</strong><br>
-                    Email: <code>admin@jobvista.com</code><br>
-                    Password: <code>password</code>
-                </div>
-            </section>
-
-            <section id="frontend">
-                <h2>2. Admin Panel Setup & Deployment (React)</h2>
-                <p>The frontend provides a sleek Material-UI dashboard to manage Jobs, Quizzes, Categories, and App users.</p>
-
-                <h3>Step 1: Installation</h3>
-                <p>Navigate to the <code>frontend</code> directory.</p>
+                <h3>2. React Admin Panel</h3>
                 <pre><code>cd frontend
 npm install</code></pre>
+                <p>Create a `.env` file containing <code>VITE_API_URL=http://127.0.0.1:8000/api</code>, then run:</p>
+                <pre><code>npm run dev</code></pre>
 
-                <h3>Step 2: Configuration</h3>
-                <p>Open the <code>.env</code> file (or create one) in the <code>frontend</code> directory and point the API URL to your live backend domain.</p>
-                <pre><code>VITE_API_URL=https://api.your-domain.com/api</code></pre>
-
-                <h3>Step 3: Build & Deploy to Production</h3>
-                <p>To compile the optimized production code, run:</p>
-                <pre><code>npm run build</code></pre>
-                <p>This will generate a <code>dist</code> folder containing the static HTML/JS/CSS assets.</p>
-                <p>Upload the contents of the <code>dist</code> folder to your web server (e.g., inside <code>public_html/admin</code> for cPanel). Ensure you configure Apache/Nginx to handle React routing (e.g., rewriting all requests to <code>index.html</code>).</p>
-            </section>
-
-            <section id="mobile">
-                <h2>3. Mobile App Setup (Flutter)</h2>
-                <p>The Flutter app provides a premium UI/UX for end-users to browse jobs, apply, and take quizzes.</p>
-
-                <h3>Step 1: Install Dependencies</h3>
-                <p>Ensure you have Flutter installed. Navigate to the <code>mobile</code> directory.</p>
+                <h3>3. Flutter Application</h3>
                 <pre><code>cd mobile
 flutter pub get</code></pre>
-
-                <h3>Step 2: API Configuration</h3>
-                <p>Open <code>lib/core/constants/api_endpoints.dart</code> (or your specific network configuration file) and update the base URL to point to your live Laravel API.</p>
-                <pre><code>class ApiEndpoints {
-  static const String baseUrl = 'https://api.your-domain.com/api';
-  // ...
-}</code></pre>
-
-                <h3>Step 3: Run / Build</h3>
-                <p>Run the app on an emulator or connected device:</p>
+                <p>Update <code>lib/core/constants/api_endpoints.dart</code> to point to your local machine IP (e.g., <code>192.168.x.x:8000/api</code>), then run:</p>
                 <pre><code>flutter run</code></pre>
-                <p>To build an APK for Android release:</p>
-                <pre><code>flutter build apk --release</code></pre>
-                <p>To build an AppBundle for Google Play Store:</p>
-                <pre><code>flutter build appbundle --release</code></pre>
             </section>
 
-            <section id="customization">
-                <h2>4. Customization Guide</h2>
+            <section id="production">
+                <h2>E. Production Deployment</h2>
                 
-                <h3>Changing the App Icon & Splash Screen (Mobile)</h3>
-                <p>We use automated libraries (<code>flutter_launcher_icons</code> and <code>flutter_native_splash</code>) to effortlessly generate your icons across all platforms.</p>
-                <ol>
-                    <li>Replace the <code>brand_png.png</code> file inside <code>mobile/assets/brand/</code> with your square logo (1024x1024 recommended).</li>
-                    <li>Replace the <code>splash.png</code> file inside <code>mobile/assets/brand/</code> with your splash screen logo.</li>
-                    <li>Run the following commands to generate the assets:
-                        <pre><code>cd mobile
-dart run flutter_launcher_icons
-dart run flutter_native_splash:create</code></pre>
-                    </li>
-                </ol>
+                <h3>cPanel / Shared Hosting Installation</h3>
+                <p>Upload the <code>backend</code> contents to a secure folder (e.g., outside <code>public_html</code>). Point your subdomain or main domain's document root to the <code>backend/public</code> folder.</p>
+                
+                <h3>VPS Deployment & Laravel Configuration</h3>
+                <p>Ensure Nginx/Apache document root points to <code>/var/www/html/backend/public</code>.</p>
+                <p>In your production <code>.env</code> file:</p>
+                <pre><code>APP_ENV=production
+APP_DEBUG=false
+APP_URL=https://api.yourdomain.com
+FORCE_HTTPS=true</code></pre>
+                <p>Import your database structure (do not use <code>migrate:fresh</code> on production as it deletes data!):</p>
+                <pre><code>composer install --no-dev --optimize-autoloader
+php artisan key:generate
+php artisan migrate --force
+php artisan storage:link
+php artisan optimize:clear
+php artisan config:cache
+php artisan route:cache
+php artisan view:cache</code></pre>
+                <p><strong>Permissions:</strong> Ensure <code>storage</code> and <code>bootstrap/cache</code> folders have <code>775</code> permissions and are owned by the web server user.</p>
 
-                <h3>Changing the Package Name (Android)</h3>
-                <p>The easiest way to change the package name (e.g., <code>com.yourcompany.jobvista</code>) is to use the <code>rename</code> package.</p>
-                <ol>
-                    <li>Run the following command globally:
-                        <pre><code>flutter pub global activate rename</code></pre>
-                    </li>
-                    <li>Navigate to the mobile directory and apply your new bundle ID:
-                        <pre><code>cd mobile
-flutter pub global run rename setBundleId --value "com.yourcompany.appname"</code></pre>
-                    </li>
-                </ol>
+                <h3>React Production Build</h3>
+                <p>In the <code>frontend</code> folder, update `.env` to point to your live API. Then run:</p>
+                <pre><code>npm run build</code></pre>
+                <p>Upload the contents of the <code>dist</code> folder to your web server (e.g., inside <code>public_html/admin</code>).</p>
 
-                <h3>Changing the App Name (Display Name)</h3>
-                <p>You can also use the rename package to change the display name of your app effortlessly:</p>
-                <pre><code>flutter pub global run rename setAppName --value "Your App Name"</code></pre>
+                <h3>Flutter Production</h3>
+                <p>Update your API URL to <code>https://api.yourdomain.com/api</code>.</p>
+                <pre><code>flutter build appbundle --release</code></pre>
+
+                <h3>Cron Configuration for Laravel Scheduler</h3>
+                <p>Add this to your server's cron tab:</p>
+                <pre><code>* * * * * cd /path-to-your-project && php artisan schedule:run >> /dev/null 2>&1</code></pre>
             </section>
 
-            <section id="features">
-                <h2>Key Features</h2>
+            <section id="branding">
+                <h2>F. Branding Customization</h2>
+                <p>Customize Job Vista to fit your brand.</p>
                 <ul>
-                    <li><strong>Smart Dual-OTP Authentication:</strong> Users can verify themselves using either their WhatsApp OTP or Email OTP interchangeably during the login and registration flows.</li>
-                    <li><strong>Job Management:</strong> Easily categorize Govt and Private jobs with extensive details (Salary, Age Limit, Links, Documents).</li>
-                    <li><strong>Interactive Quizzes:</strong> Create dynamic multiple-choice quizzes from the admin panel that users can play natively in the app.</li>
-                    <li><strong>Premium UI:</strong> Built with cutting-edge Glassmorphism designs and fluid animations across Login, Registration, and internal dashboard pages.</li>
+                    <li><strong>Application Name:</strong> Change this via the Admin Panel -> Settings -> General Settings.</li>
+                    <li><strong>Flutter App Icon:</strong> Replace the icon file in <code>mobile/assets/icon/app_icon.png</code> and run <code>flutter pub run flutter_launcher_icons</code>.</li>
+                    <li><strong>Splash Screen:</strong> Replace the image in <code>mobile/assets/images/splash.png</code> or modify <code>lib/features/splash/splash_screen.dart</code>.</li>
+                    <li><strong>Mobile App Logo:</strong> Replace <code>mobile/assets/images/logo.png</code>.</li>
+                    <li><strong>Admin Panel Logo:</strong> Replace <code>frontend/src/assets/logo.png</code>.</li>
+                    <li><strong>Theme Colors (Flutter):</strong> Modify <code>lib/core/theme/app_colors.dart</code> to change primary and secondary colors.</li>
+                    <li><strong>Theme Colors (React):</strong> Modify CSS variables in <code>frontend/src/index.css</code>.</li>
+                    <li><strong>Package Name / Application ID:</strong> Search globally for <code>com.jobvista.app</code> in the <code>mobile</code> directory and replace it. Update <code>android/app/build.gradle</code> and <code>ios/Runner.xcodeproj</code>.</li>
+                </ul>
+            </section>
+
+            <section id="screenshots">
+                <h2>G. High-Quality Interface Screenshots</h2>
+                
+                <h3>Mobile Application</h3>
+                <div class="screenshot-grid">
+                    <img src="https://raw.githubusercontent.com/nivotrapvtltd/Job-Vista-documentations/main/Assets/Mobile%20Screenshots/screenshot1.jpeg" alt="Mobile Home" />
+                    <img src="https://raw.githubusercontent.com/nivotrapvtltd/Job-Vista-documentations/main/Assets/Mobile%20Screenshots/screenshot2.jpeg" alt="Job Listing" />
+                    <img src="https://raw.githubusercontent.com/nivotrapvtltd/Job-Vista-documentations/main/Assets/Mobile%20Screenshots/screenshot3.jpeg" alt="Job Details" />
+                    <img src="https://raw.githubusercontent.com/nivotrapvtltd/Job-Vista-documentations/main/Assets/Mobile%20Screenshots/screenshot8.jpeg" alt="Notifications" />
+                    <img src="https://raw.githubusercontent.com/nivotrapvtltd/Job-Vista-documentations/main/Assets/Mobile%20Screenshots/screenshot9.jpeg" alt="Profile" />
+                </div>
+                
+                <h3 style="margin-top: 2rem;">Admin Panel</h3>
+                <img src="https://raw.githubusercontent.com/nivotrapvtltd/Job-Vista-documentations/main/Assets/Admin%20Panel%20Screenshots/screenshot1.png" alt="Admin Dashboard" class="admin-img" />
+                <img src="https://raw.githubusercontent.com/nivotrapvtltd/Job-Vista-documentations/main/Assets/Admin%20Panel%20Screenshots/screenshot2.png" alt="Job Management" class="admin-img" />
+                <img src="https://raw.githubusercontent.com/nivotrapvtltd/Job-Vista-documentations/main/Assets/Admin%20Panel%20Screenshots/screenshot3.png" alt="User Management" class="admin-img" />
+            </section>
+
+            <section id="troubleshooting">
+                <h2>H. Troubleshooting</h2>
+                
+                <table width="100%">
+                    <tr><th>Symptom</th><th>Likely Cause</th><th>Exact Fix</th></tr>
+                    <tr><td>HTTP 500 error</td><td>Missing dependencies, incorrect PHP version, or database connection issue.</td><td>Check <code>storage/logs/laravel.log</code>. Ensure <code>.env</code> DB credentials are correct. Run <code>composer install</code>.</td></tr>
+                    <tr><td>Blank React page</td><td>JavaScript error or missing build files.</td><td>Open browser console. Ensure you uploaded the contents of the <code>dist</code> folder, not the source code.</td></tr>
+                    <tr><td>Laravel storage images not loading</td><td>Storage symlink missing.</td><td>Run <code>php artisan storage:link</code>. If on shared hosting, create a symlink via cPanel.</td></tr>
+                    <tr><td>Database connection failure</td><td>Wrong `.env` credentials.</td><td>Update DB_HOST, DB_PORT, DB_DATABASE, DB_USERNAME, DB_PASSWORD in `.env`.</td></tr>
+                    <tr><td>APP_KEY missing</td><td>Application key not generated.</td><td>Run <code>php artisan key:generate</code>.</td></tr>
+                    <tr><td>Composer PHP-version conflict</td><td>Server uses older PHP.</td><td>Update server PHP version to 8.3 from cPanel MultiPHP Manager.</td></tr>
+                    <tr><td>CORS error</td><td>API URL mismatch or config issue.</td><td>Ensure `config/cors.php` allows your React admin URL.</td></tr>
+                    <tr><td>API URL incorrectly configured</td><td>React `.env` issue.</td><td>Ensure `VITE_API_URL` points to your backend.</td></tr>
+                    <tr><td>npm install failure</td><td>Old Node.js version.</td><td>Update Node.js to v22+.</td></tr>
+                    <tr><td>Flutter dependency conflict</td><td>Outdated packages.</td><td>Run <code>flutter clean</code> then <code>flutter pub get</code>.</td></tr>
+                    <tr><td>SMTP authentication failure</td><td>Wrong SMTP credentials.</td><td>Update SMTP username/password in Admin Settings or `.env`.</td></tr>
+                    <tr><td>Push notifications not arriving</td><td>Firebase config missing.</td><td>Add Firebase Server Key in Admin Settings.</td></tr>
+                    <tr><td>Folder permission problems</td><td>Server restricts write access.</td><td>Chmod <code>storage</code> and <code>bootstrap/cache</code> to 775.</td></tr>
+                    <tr><td>Route not found after deployment</td><td>Missing .htaccess or Nginx config.</td><td>Ensure the `.htaccess` file is present in the `public` folder and your webserver parses it.</td></tr>
+                    <tr><td>Admin login failure</td><td>Incorrect credentials or unmigrated DB.</td><td>Run migrations/seeders. Default is <code>admin@jobvista.test</code> / <code>password</code>.</td></tr>
+                    <tr><td>Cache showing old configuration</td><td>Laravel cached old config.</td><td>Run <code>php artisan optimize:clear</code>.</td></tr>
+                    <tr><td>cPanel document-root problems</td><td>Domain points to wrong folder.</td><td>Point your domain strictly to the <code>public/</code> folder inside the backend directory.</td></tr>
+                </table>
+            </section>
+
+            <section id="third-party">
+                <h2>I. Third-Party Services and Additional Costs</h2>
+                <p>Job Vista supports integration with external services. These services require separate accounts and configuration by the buyer. Depending on the selected provider, free usage limits or paid plans may apply. Any subscription charges, message charges, email delivery charges, API charges, hosting costs, domain costs, and third-party service fees are not included with the item purchase.</p>
+                <table width="100%">
+                    <tr><th>Feature</th><th>External service required</th><th>Included in purchase</th></tr>
+                    <tr><td>Push notifications</td><td>Firebase Cloud Messaging</td><td>Service account and paid charges are not included</td></tr>
+                    <tr><td>Email and OTP email</td><td>SMTP provider</td><td>Email-provider charges are not included</td></tr>
+                    <tr><td>Hosting</td><td>PHP/Laravel server</td><td>Not included</td></tr>
+                    <tr><td>Domain and SSL</td><td>Domain provider</td><td>Not included</td></tr>
+                    <tr><td>App Store publishing</td><td>Developer account</td><td>Not included</td></tr>
+                </table>
+                <p><strong>Configuring Accounts:</strong> You enter credentials (like Firebase Server Keys or SMTP passwords) via the React Admin Panel -> Settings. <em>Never include your private credentials if you share your database.</em></p>
+            </section>
+
+            <section id="support">
+                <h2>J. Support Policy</h2>
+                <p>Support is provided through the official support channel associated with this CodeCanyon item. Please include your purchase code, software version, error message, and relevant screenshots when requesting assistance.</p>
+                <div class="alert">We do not provide customization services or server setup as part of item support. Direct messaging or chat platforms are not official support channels.</div>
+            </section>
+
+            <section id="changelog">
+                <h2>K. Changelog and Credits</h2>
+                <p><strong>Version 1.0.0</strong> – Initial release</p>
+                
+                <h3>Credits & Licenses</h3>
+                <ul>
+                    <li>Laravel Framework (MIT License)</li>
+                    <li>React.js (MIT License)</li>
+                    <li>Flutter & Dart (BSD License)</li>
+                    <li>Icons8 (for interface icons, preview only)</li>
                 </ul>
             </section>
 
             <br><br><br>
         </div>
     </main>
-
-    <script>
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
 </body>
 </html>
